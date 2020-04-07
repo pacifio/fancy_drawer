@@ -1,5 +1,5 @@
 # Fancy drawer
-![Fancy drawer](https://github.com/pacifio/fancy_drawer/blob/master/media/media.gif
+![Fancy drawer](https://github.com/pacifio/fancy_drawer/blob/master/media/fancy_drawer.gif
 "Fancy drawer")
 
 A beautiful drawer experience for your flutter app .
