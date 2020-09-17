@@ -46,72 +46,75 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: FancyDrawerWrapper(
-        backgroundColor: Colors.white,
-        controller: _controller,
-        drawerItems: <Widget>[
-          Text(
-            "Go to home",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.purple.shade700,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            "About us",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.purple.shade700,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            "Our products",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.purple.shade700,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            "Support us",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.purple.shade700,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            "Log out",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.purple.shade700,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-        child: Scaffold(
-          appBar: AppBar(
-            elevation: 4.0,
-            title: Text(
-              "Some appbar",
-              style: TextStyle(color: Colors.black),
-            ),
-            backgroundColor: Colors.white,
-            leading: IconButton(
-              icon: Icon(
-                Icons.menu,
-                color: Colors.black,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Material(
+        child: FancyDrawerWrapper(
+          backgroundColor: Colors.white,
+          controller: _controller,
+          drawerItems: <Widget>[
+            Text(
+              "Go to home",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.purple.shade700,
+                fontWeight: FontWeight.bold,
               ),
-              onPressed: () {
-                _controller.toggle();
-              },
             ),
-          ),
-          body: Center(
-            child: Text("Body"),
+            Text(
+              "About us",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.purple.shade700,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              "Our products",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.purple.shade700,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              "Support us",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.purple.shade700,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              "Log out",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.purple.shade700,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+          child: Scaffold(
+            appBar: AppBar(
+              elevation: 4.0,
+              title: Text(
+                "Some appbar",
+                style: TextStyle(color: Colors.black),
+              ),
+              backgroundColor: Colors.white,
+              leading: IconButton(
+                icon: Icon(
+                  Icons.menu,
+                  color: Colors.black,
+                ),
+                onPressed: () {
+                  _controller.toggle();
+                },
+              ),
+            ),
+            body: Center(
+              child: Text("Body"),
+            ),
           ),
         ),
       ),

@@ -43,20 +43,25 @@ class _FancyDrawerWrapperState extends State<FancyDrawerWrapper> {
 
   Widget _renderContent() {
     final slideAmount = 275.0 * widget.controller.percentOpen;
-    final contentScale = 1.0 - (0.2 * widget.controller.percentOpen);
+    final padding = (0.2 * widget.controller.percentOpen);
     final cornerRadius = widget.cornerRadius * widget.controller.percentOpen;
 
-    return Transform(
-      transform: Matrix4.translationValues(slideAmount, 0.0, 0.0)
-        ..scale(contentScale, contentScale),
-      alignment: Alignment.centerLeft,
+    var size = MediaQuery.of(context).size;
+    var w = size.width, h = size.height;
+    return PositionedDirectional(
+      bottom: padding * h / 2,
+      start: slideAmount,
+      top: padding * h / 2,
       child: Container(
+        width: w,
+        height: h,
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
-              color: Colors.black.withOpacity(0.15),
-              offset: Offset(0.0, 4.0),
-              blurRadius: 40.0,
-              spreadRadius: 10.0)
+            color: Colors.black.withOpacity(0.15),
+            offset: Offset(0.0, 4.0),
+            blurRadius: 40.0,
+            spreadRadius: 10.0,
+          )
         ]),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(cornerRadius),
@@ -75,24 +80,27 @@ class _FancyDrawerWrapperState extends State<FancyDrawerWrapper> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var w = size.width, h = size.height;
     return Stack(
       children: <Widget>[
-        Container(
-          width: double.infinity,
-          height: double.infinity,
-          color: widget.backgroundColor,
-          child: Padding(
-            padding:
-                EdgeInsets.only(left: MediaQuery.of(context).size.width / 8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.drawerItems.map((item) {
-                return Container(
-                  margin: EdgeInsets.symmetric(vertical: widget.itemGap),
-                  child: item,
-                );
-              }).toList(),
+        Positioned.fill(
+          child: Container(
+            width: w,
+            height: h,
+            color: widget.backgroundColor,
+            child: Padding(
+              padding: EdgeInsetsDirectional.only(start: w / 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: widget.drawerItems.map((item) {
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: widget.itemGap),
+                    child: item,
+                  );
+                }).toList(),
+              ),
             ),
           ),
         ),
