@@ -83,18 +83,16 @@ class _FancyDrawerWrapperState extends State<FancyDrawerWrapper> {
           width: double.infinity,
           height: double.infinity,
           color: widget.backgroundColor,
-          child: Padding(
-            padding: widget.drawerPadding ?? EdgeInsets.all(10),
-            child: Center(
-              child: ListView(
-                shrinkWrap: true,
-                children: widget.drawerItems.map((item) {
-                  return Container(
-                    margin: EdgeInsets.symmetric(vertical: widget.itemGap),
-                    child: item,
-                  );
-                }).toList(),
-              ),
+          child: Center(
+            child: ListView(
+              padding: widget.drawerPadding ?? EdgeInsets.all(10),
+              shrinkWrap: true,
+              children: widget.drawerItems.map((item) {
+                return Container(
+                  margin: EdgeInsets.symmetric(vertical: widget.itemGap),
+                  child: item,
+                );
+              }).toList(),
             ),
           ),
         ),
