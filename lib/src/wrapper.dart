@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'controller.dart';
 
 /// The wrapper class
@@ -11,6 +10,7 @@ import 'controller.dart';
 /// Field [FancyDrawerController controller] takes the controller
 /// Field [bool hideOnContentTap] determines if user tap will hide the drawer or not
 /// Field [double cornerRadius] determines the content corner radius
+/// Field [EdgeInsets? drawerPadding] determines overall drawer padding
 class FancyDrawerWrapper extends StatefulWidget {
   final List<Widget> drawerItems;
   final double itemGap;
@@ -19,14 +19,14 @@ class FancyDrawerWrapper extends StatefulWidget {
   final FancyDrawerController controller;
   final bool hideOnContentTap;
   final double cornerRadius;
-  final EdgeInsets drawerPadding;
+  final EdgeInsets? drawerPadding;
 
-  const FancyDrawerWrapper({
-    Key key,
-    @required this.drawerItems,
+  FancyDrawerWrapper({
+    Key? key,
+    required this.drawerItems,
+    required this.child,
+    required this.controller,
     this.backgroundColor = Colors.white,
-    @required this.child,
-    @required this.controller,
     this.itemGap = 10.0,
     this.hideOnContentTap = true,
     this.cornerRadius = 8.0,

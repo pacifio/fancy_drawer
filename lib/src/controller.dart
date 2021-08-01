@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'drawer_state.dart';
 
 /// Controls the Drawer Wrapper class
@@ -11,9 +10,10 @@ class FancyDrawerController extends ChangeNotifier {
   final AnimationController _animationController;
   DrawerState state = DrawerState.closed;
 
-  FancyDrawerController(
-      {@required this.vsync, this.duration = const Duration(milliseconds: 250)})
-      : _animationController =
+  FancyDrawerController({
+    required this.vsync,
+    this.duration = const Duration(milliseconds: 250),
+  }) : _animationController =
             AnimationController(vsync: vsync, duration: duration) {
     _initController();
   }
@@ -59,7 +59,7 @@ class FancyDrawerController extends ChangeNotifier {
   }
 
   /// Close the drawer programmatically
-  close() {
+  void close() {
     _animationController.reverse();
   }
 
