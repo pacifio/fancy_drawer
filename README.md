@@ -33,7 +33,7 @@ FancyDrawerWrapper(
 	backgroundColor: Colors.white, // Drawer background
 	controller: _controller, // Drawer controller
 	drawerItems: <Widget>[], // Drawer items
-	chile: Scaffold(), // Your app content
+	child: Scaffold(), // Your app content
 );
 ```
 
