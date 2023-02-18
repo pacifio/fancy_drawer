@@ -11,6 +11,9 @@ import 'controller.dart';
 /// Field [bool hideOnContentTap] determines if user tap will hide the drawer or not
 /// Field [double cornerRadius] determines the content corner radius
 /// Field [EdgeInsets? drawerPadding] determines overall drawer padding
+
+///   Field [double childWidth] set the width of a child ....
+
 class FancyDrawerWrapper extends StatefulWidget {
   final List<Widget> drawerItems;
   final double itemGap;
@@ -20,6 +23,9 @@ class FancyDrawerWrapper extends StatefulWidget {
   final bool hideOnContentTap;
   final double cornerRadius;
   final EdgeInsets? drawerPadding;
+
+  final double childWidth;
+
 
   FancyDrawerWrapper({
     Key? key,
@@ -31,6 +37,9 @@ class FancyDrawerWrapper extends StatefulWidget {
     this.hideOnContentTap = true,
     this.cornerRadius = 8.0,
     this.drawerPadding,
+
+    this.childWidth = 270.0
+
   }) : super(key: key);
 
   @override
@@ -44,7 +53,9 @@ class _FancyDrawerWrapperState extends State<FancyDrawerWrapper> {
   }
 
   Widget _renderContent() {
-    final slideAmount = 275.0 * widget.controller.percentOpen;
+
+    final slideAmount = widget.childWidth * widget.controller.percentOpen;
+
     final contentScale = 1.0 - (0.2 * widget.controller.percentOpen);
     final cornerRadius = widget.cornerRadius * widget.controller.percentOpen;
 
