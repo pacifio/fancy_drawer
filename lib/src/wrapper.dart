@@ -11,7 +11,6 @@ import 'controller.dart';
 /// Field [bool hideOnContentTap] determines if user tap will hide the drawer or not
 /// Field [double cornerRadius] determines the content corner radius
 /// Field [EdgeInsets? drawerPadding] determines overall drawer padding
-
 ///   Field [double childWidth] set the width of a child ....
 
 class FancyDrawerWrapper extends StatefulWidget {
@@ -23,9 +22,7 @@ class FancyDrawerWrapper extends StatefulWidget {
   final bool hideOnContentTap;
   final double cornerRadius;
   final EdgeInsets? drawerPadding;
-
   final double childWidth;
-
 
   FancyDrawerWrapper({
     Key? key,
