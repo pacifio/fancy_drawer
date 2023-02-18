@@ -52,7 +52,34 @@ class _FancyDrawerWrapperState extends State<FancyDrawerWrapper> {
     super.initState();
   }
 
+  var anotherState = false;
+
   Widget _renderContent() {
+
+    var state = true;
+
+    if (widget.controller.state == DrawerState.open) {
+      state = false;
+    }
+
+    if (widget.controller.state == DrawerState.opening) {
+      state = true;
+      anotherState = true;
+
+    }
+    if (widget.controller.state == DrawerState.closing) {
+      state = false;
+      anotherState = false;
+
+    }
+
+    if (widget.controller.state == DrawerState.closed) {
+      if (anotherState) {
+        state = true;
+      } else {
+        state = false;
+      }
+    }
 
     final slideAmount = widget.childWidth * widget.controller.percentOpen;
 
