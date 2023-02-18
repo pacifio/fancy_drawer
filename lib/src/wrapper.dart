@@ -92,7 +92,7 @@ class _FancyDrawerWrapperState extends State<FancyDrawerWrapper> {
       alignment: Alignment.centerLeft,
 
       child: Container(
-        margin: widget.controller.state == DrawerState.open ?  widget.childMargin : EdgeInsets.zero,
+        margin: state ?  widget.childMargin : EdgeInsets.zero,
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
               color: Colors.black.withOpacity(0.15),
