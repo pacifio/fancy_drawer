@@ -1,3 +1,4 @@
+import 'package:fancy_drawer/fancy_drawer.dart';
 import 'package:flutter/material.dart';
 import 'controller.dart';
 
@@ -64,7 +65,7 @@ class _FancyDrawerWrapperState extends State<FancyDrawerWrapper> {
       alignment: Alignment.centerLeft,
 
       child: Container(
-        margin: widget.childMargin,
+        margin: widget.controller.state == DrawerState.open ?  widget.childMargin : EdgeInsets.zero,
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
               color: Colors.black.withOpacity(0.15),
