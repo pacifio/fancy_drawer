@@ -126,6 +126,7 @@ class _FancyDrawerWrapperState extends State<FancyDrawerWrapper> {
           child: Center(
             child: ListView(
               padding: widget.drawerPadding ?? EdgeInsets.all(10),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               children: widget.drawerItems.map((item) {
                 return Container(
