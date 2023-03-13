@@ -26,6 +26,7 @@ class FancyDrawerWrapper extends StatefulWidget {
   final EdgeInsets? drawerPadding;
   final double childWidth;
   final EdgeInsets childMargin;
+  final String parentBackgroundImage;
 
   FancyDrawerWrapper({
     Key? key,
@@ -38,8 +39,8 @@ class FancyDrawerWrapper extends StatefulWidget {
     this.cornerRadius = 8.0,
     this.drawerPadding,
     this.childMargin  = EdgeInsets.zero,
-    this.childWidth = 270.0
-
+    this.childWidth = 270.0,
+    this.parentBackgroundImage=""
   }) : super(key: key);
 
   @override
@@ -118,7 +119,16 @@ class _FancyDrawerWrapperState extends State<FancyDrawerWrapper> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: <Widget>[
+      clipBehavior: Clip.none,
+      children: [
+
+        widget.parentBackgroundImage == "" ? Container() :
+        Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(widget.parentBackgroundImage),
+                  fit: BoxFit.cover)),
+        ),
         Container(
           width: double.infinity,
           height: double.infinity,
