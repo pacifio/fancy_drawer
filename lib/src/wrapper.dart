@@ -1,3 +1,4 @@
+import 'package:fancy_drawer/fancy_drawer.dart';
 import 'package:flutter/material.dart';
 import 'controller.dart';
 
@@ -11,6 +12,9 @@ import 'controller.dart';
 /// Field [bool hideOnContentTap] determines if user tap will hide the drawer or not
 /// Field [double cornerRadius] determines the content corner radius
 /// Field [EdgeInsets? drawerPadding] determines overall drawer padding
+/// Field [double childWidth] set the width of a child ....
+/// Field [double childMargin] set the child  margin to your own need....
+
 class FancyDrawerWrapper extends StatefulWidget {
   final List<Widget> drawerItems;
   final double itemGap;
@@ -20,6 +24,9 @@ class FancyDrawerWrapper extends StatefulWidget {
   final bool hideOnContentTap;
   final double cornerRadius;
   final EdgeInsets? drawerPadding;
+  final double childWidth;
+  final EdgeInsets childMargin;
+  final String parentBackgroundImage;
 
   FancyDrawerWrapper({
     Key? key,
@@ -31,6 +38,9 @@ class FancyDrawerWrapper extends StatefulWidget {
     this.hideOnContentTap = true,
     this.cornerRadius = 8.0,
     this.drawerPadding,
+    this.childMargin  = EdgeInsets.zero,
+    this.childWidth = 270.0,
+    this.parentBackgroundImage=""
   }) : super(key: key);
 
   @override
@@ -43,8 +53,37 @@ class _FancyDrawerWrapperState extends State<FancyDrawerWrapper> {
     super.initState();
   }
 
+  var anotherState = false;
+
   Widget _renderContent() {
-    final slideAmount = 275.0 * widget.controller.percentOpen;
+
+    var state = true;
+
+    if (widget.controller.state == DrawerState.open) {
+      state = false;
+    }
+
+    if (widget.controller.state == DrawerState.opening) {
+      state = true;
+      anotherState = true;
+
+    }
+    if (widget.controller.state == DrawerState.closing) {
+      state = false;
+      anotherState = false;
+
+    }
+
+    if (widget.controller.state == DrawerState.closed) {
+      if (anotherState) {
+        state = true;
+      } else {
+        state = false;
+      }
+    }
+
+    final slideAmount = widget.childWidth * widget.controller.percentOpen;
+
     final contentScale = 1.0 - (0.2 * widget.controller.percentOpen);
     final cornerRadius = widget.cornerRadius * widget.controller.percentOpen;
 
@@ -52,7 +91,9 @@ class _FancyDrawerWrapperState extends State<FancyDrawerWrapper> {
       transform: Matrix4.translationValues(slideAmount, 0.0, 0.0)
         ..scale(contentScale, contentScale),
       alignment: Alignment.centerLeft,
+
       child: Container(
+        margin: state ?  widget.childMargin : EdgeInsets.zero,
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
               color: Colors.black.withOpacity(0.15),
@@ -78,14 +119,22 @@ class _FancyDrawerWrapperState extends State<FancyDrawerWrapper> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: <Widget>[
+      clipBehavior: Clip.none,
+      children: [
+
+
         Container(
           width: double.infinity,
           height: double.infinity,
-          color: widget.backgroundColor,
+          decoration: BoxDecoration(
+              color: widget.backgroundColor,
+              image: DecorationImage(
+                  image: AssetImage(widget.parentBackgroundImage),
+                  fit: BoxFit.cover)),
           child: Center(
             child: ListView(
               padding: widget.drawerPadding ?? EdgeInsets.all(10),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               children: widget.drawerItems.map((item) {
                 return Container(
