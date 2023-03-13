@@ -122,17 +122,15 @@ class _FancyDrawerWrapperState extends State<FancyDrawerWrapper> {
       clipBehavior: Clip.none,
       children: [
 
-        widget.parentBackgroundImage == "" ? Container() :
-        Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(widget.parentBackgroundImage),
-                  fit: BoxFit.cover)),
-        ),
+
         Container(
           width: double.infinity,
           height: double.infinity,
-          color: widget.backgroundColor,
+          decoration: BoxDecoration(
+              color: widget.backgroundColor,
+              image: DecorationImage(
+                  image: AssetImage(widget.parentBackgroundImage),
+                  fit: BoxFit.cover)),
           child: Center(
             child: ListView(
               padding: widget.drawerPadding ?? EdgeInsets.all(10),
